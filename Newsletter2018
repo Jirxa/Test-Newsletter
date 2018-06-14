@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Facebook sharing information tags -->
+	<meta property="og:title" content="nouvelle infolettre">
+
+	<title>nouvelle infolettre</title>
+
+	<!-- pas de Bootstrap -->
+	<!--<link href="http://osug-spip3.ujf-grenoble.fr/test/ecrire/css/newsletter_v2_b1css.css" rel="stylesheet">-->
+	
+	<style type="text/css">
+		/* general */
+		body {
+			background-color: white;
+		}
+		
+		div, h1, h2, h3, h4, h5 {
+			font-family: 'Helvetica Neue', Helvetica, Arial;
+		}
+		
+		footer {
+			background-color: #CBCDCD; /* gris OSUG */
+			padding: 10px;
+			margin-top: 25px;
+			text-align: center;
+		}
+		
+		/* boites */
+		
+		.voirnavigateur {
+			text-align: center;
+			font-size: small;
+		}
+		
+		.menu {
+			background-color: #EBEBEB; /* gris clair */
+			border-radius: 15px;
+			font-weight: bold;
+			font-size: 19px;
+			width: 65%;
+			padding: 0px;
+			padding-left: 20px;
+			padding-right: 20px;
+			margin-right: auto;
+			margin-left: auto;
+			margin-top: 50px;
+			text-align: center;
+			display: flex;
+			justify-content: space-around;
+			flex-flow: row wrap;
+		}
+		
+		.contenu {
+			margin: auto;
+			margin-top: 50px;
+			display: block;
+			width: 100%;
+		}
+		
+		.focustitre {
+			display: block;
+			margin: auto;
+			padding: 1px;
+			width: 100%;
+			position: relative;
+			text-align: center;
+			/* pour mettre le focus en bleu: remplacer par
+			background-color: rgba(9, 107, 177, 0.5);*/
+			background-color: rgba(255, 255, 255, 0.5); 
+		}
+		
+		.container_focus {
+			background-color: #EBEBEB;
+			display: block;
+			position: relative;
+			margin: auto;
+			margin-top: -22%;
+			margin-bottom: 40px;
+			padding-left: 60px;
+			padding-right: 60px;
+			padding-top: 20px;
+			padding-bottom: 30px;
+			width: 45%;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		
+		.vieosug .container, .appelpart .container, .partenaires .container {
+			background-color: white;
+			display: block;
+			position: relative;
+			margin : auto;
+			margin-top: 15px;
+			margin-bottom: 40px;
+			padding-top: 0.5px;
+			padding-bottom: 8px;
+			padding-left: 22px;
+			padding-right: 17px;
+			width: 65%;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		
+		.all_agendapub {
+			display: flex;
+			flex-direction: row;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			justify-content: center;
+			margin: auto;
+			width: 95%;
+			position: relative;
+			margin-bottom: 40px;
+		}
+		
+		.container_agendapub {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: space-between;
+			margin: 10px;
+			margin-top: 15px;
+			width: 350px;
+			height: 375px;
+			position: relative;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		
+		.container_agendapub .blanc {
+			background-color: white;
+			width: 350px;
+			height: 150px;
+			display: flex;
+			flex-direction: column;
+			align-content: stretch;
+			justify-content: space-between;
+		}
+		
+		.texteimage {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+			align-items: center;
+			vertical-align: middle;
+		}
+		
+		.article, .article-img, .article-mini-img {
+			padding-bottom: 10px;
+		}
+		
+		.article-img .soustexteimage {
+			display: block;
+			margin: 0;
+			width: 45%;
+		}
+		
+		.article-mini-img .soustexteimage {
+			display: block;
+			margin: 0;
+			width: 100%;
+		}
+		
+		.seminaires {
+			margin-bottom: 25px;
+		}
+		
+		.all_agendasci {
+			display: block;
+			margin: auto;
+			width: 65%;
+		}
+		
+		.all_cards_agendasci {
+			display: flex;
+			flex-flow: row wrap;
+			flex-direction: row;
+			position: relative;
+			justify-content: center;
+		}
+		
+		.card_agendasci {
+			width: 375px;
+			height: auto;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			background-color: #EBEBEB;
+			border-radius: 50px;
+			padding-left: 22px;
+			padding-right: 18px;
+			padding-top: 22px;
+			padding-bottom: 5px;
+			margin: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: space-between;
+		}
+		
+		.card_agendasci-osug {
+			width: 375px;
+			height: auto;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			background-color: #096BB1;
+			border-radius: 50px;
+			padding-left: 22px;
+			padding-right: 18px;
+			padding-top: 22px;
+			padding-bottom: 5px;
+			margin: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: space-between;
+		}
+		
+		.all_une {
+			display: flex;
+			flex-flow: row wrap;
+			flex-direction: row;
+			position: relative;
+			align-items: flex-start;
+			justify-content: center;
+			margin: auto;
+			width: 70%;
+		}
+		
+		.container-article_une {
+			margin: 8px;
+			margin-top: 15px;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: space-between;
+			width: 400px;
+			height: 380px;
+			position: relative;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		
+		/* medias (images, videos) */
+		
+		.spip_logos, .focusimg {
+			width: 100%;
+		}
+		
+		.focusimg {
+			margin-top: -70px;
+		}
+		
+		.focus_article_media {
+			display: block;
+			margin: auto;
+			width: 60%;
+		}
+		
+		.focus_article_media img {
+			max-width: 100%;
+			display: block;
+			margin: auto;
+		}
+		
+		.focus_article_media iframe {
+			display: block;
+			margin: auto;
+			width: 100%;
+			height: 315px;
+			padding-top: 10px;
+		}
+		
+		.vieosug .container .article img {
+			display: block;
+			width: 95%;
+			margin: auto;
+			margin-bottom: 30px;
+		}
+		
+		.appelpart .article-img img, .partenaires .article-img img {
+			max-width: 45%;
+		}
+		
+		.appelpart .article-mini-img img, .partenaires .article-mini-img img{
+			max-width: 20%;
+			position: relative;
+			float: left;
+			margin-right: 20px;
+			margin-bottom: 15px;
+		}
+		
+		.imgpub {
+			width: 350px;
+			height: 225px;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.logo {
+			max-width: 350px;
+			display: block;
+			margin: auto;
+		}
+		
+		.imgune {
+			width: 400px;
+			max-height: 256px;
+		}
+		
+		.card_agendasci .osugicon {
+			width: 100px;
+			height: 45px;
+			float: left;
+			position: relative;
+			display: none;
+		}
+		
+		.card_agendasci-osug .osugicon {
+			width: 100px;
+			height: 45px;
+			float: left;
+			position: relative;
+			display: flex;
+		}
+		
+		/* textes */
+		
+		h1 {
+			text-align: center;
+		}
+
+		.vieosug h2, .appelpart h2, .agendapub h2, .agendasci h2, .partenaires h2, .une h2 {
+			color: white;
+			background-color: #096BB1; /* bleu OSUG */
+			padding: 8px;
+			width: 66%;
+			display: block;
+			margin: auto;
+			margin-top: 20px;
+		}
+		
+		.container_focus h3 {
+			text-align: center;
+		}
+		
+		h3 {
+			color: #096bb1;
+			padding-top: 8px;
+		}
+		
+		.agendapub h4 {
+			display: block;
+			margin: 0;
+			color: #096bb1;
+			padding: 6px;
+			padding-left: 10px;
+		}
+		
+		.agendasci .card_agendasci h4 {
+			color: #096bb1;
+			font-size: 20px;
+			margin: 0;
+			margin-top: 8px;
+		}
+		
+		.agendasci .card_agendasci-osug h4 {
+			color: white;
+			font-size: 20px;
+			margin: 0;
+			margin-top: 8px;
+		}
+		
+		.une h4 {
+			margin: auto;
+			color: #096bb1;
+			margin-left: 8px;
+			margin-right: 8px;
+			margin-top: 6px;
+		}
+		
+		.agendapub h5 {
+			display: block;
+			margin: 0;
+			color: #5B5B5B;
+			font-size: 20px;
+			padding: 6px;
+			padding-left: 10px;
+		}
+		
+		.agendasci .card_agendasci h5 {
+			color: #5B5B5B;
+			font-size: 15px;
+			margin: 0;
+		}
+		
+		.agendasci .card_agendasci-osug h5 {
+			color: #C1C1C1;
+			font-size: 15px;
+			margin: 0;
+		}
+		
+		.chapo p {
+			font-weight: normal;
+			font-style: italic;
+			text-align: center;
+		}
+		
+		.chapo .texte {
+			border-left: 2px solid #096BB1;
+			border-bottom: 2px solid #096BB1;
+			padding: 5px;
+			padding-left: 15px;
+			margin-right: 15px;
+		}
+		
+		.chapo a:hover {
+			font-weight: inherit;
+		}
+		
+		.card_agendasci .lieu {
+			color: #969696;
+			font-weight: bold;
+			margin: 0;
+			margin-top: 15px;
+		}
+		
+		.card_agendasci-osug .lieu {
+			color: black;
+			font-weight: bold;
+			margin: 0;
+			margin-top: 15px;
+		}
+		
+		.card_agendasci-osug .texte {
+			color: white;
+		}
+		
+		.lire_en_ligne a {
+			color: white;
+			background-color: #096BB1;
+			padding: 8px;
+			margin-right:5%;
+			margin-bottom: 20px;
+			float: right;
+			position: static;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #096BB1;
+			border-radius: 2px;
+			transition: background-color 3s;
+			transition: color 0.5s;
+		}
+		
+		.lire_en_ligne a:hover {
+			color: #096BB1;
+			background-color: inherit;
+			padding: 8px;
+			margin-right:5%;
+			margin-bottom: 20px;
+			float: right;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #096BB1;
+			border-radius: 0px;
+			border-radius: 2px;
+			transition: background-color 2s;
+			transition: color 0.5s;
+		}
+		
+		.card_agendasci-osug .lire_en_ligne a {
+			color: black;
+			background-color: #EBEBEB;
+			padding: 8px;
+			margin-right:5%;
+			margin-bottom: 20px;
+			float: right;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #EBEBEB;
+			border-radius: 2px;
+			transition: background-color 2s;
+			transition: color 0.5s;
+		}
+		
+		.card_agendasci-osug .lire_en_ligne a:hover {
+			color: #EBEBEB;
+			background-color: #096BB1;
+			padding: 8px;
+			margin-right:5%;
+			margin-bottom: 20px;
+			float: right;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #EBEBEB;
+			border-radius: 2px;
+			transition: background-color 2s;
+			transition: color 0.5s;
+		}
+		
+		a, .importantlink a:hover {
+			text-decoration: none ;
+			color: #3D7CC7; /* bleu clair liens */
+		}
+		
+		p a:hover, .voirnavigateur a:hover {
+			font-weight: normal;
+			text-decoration: underline;
+		}
+		
+		.importantlink {
+			color: #3D7CC7;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #3D7CC7;
+			border-radius: 6px;
+			padding: 12px;
+			display: inline-block;
+			margin: 7px;
+			text-align: center;
+			font-size: 114%;
+			vertical-align: middle;
+			overflow: auto;
+			transition: background-color 3s;
+			transition: color 0.5s;
+		}
+		
+		.importantlink:hover {
+			font-weight: normal;
+			text-decoration: none;
+			background-color: #3D7CC7;
+			color: white;
+			transition: background-color 3s;
+			transition: color 0.5s;
+			text-align: center;
+		}
+		
+		.importantlink a:hover {
+			color:white;
+		}
+		
+		.menu a, .menu .barre {
+			padding: 10px;
+		}
+		
+		.menu a:hover {
+			background-color: #096BB1;
+		}
+		
+		.menu a:hover {
+			color: white;
+			border-radius: 3px;
+		}
+		
+		@media screen and (max-width: 900px) {
+			
+			.menu {
+				display: flex;
+				justify-content: space-around;
+				flex-flow: column wrap;
+				padding:0;
+				width: 40%;
+			}
+			
+			.barre {
+				display: none;
+			}
+			
+			.menu a:hover {
+				background-color: #096BB1;
+			}
+			
+			.focus_article_media iframe {
+				display: block;
+				margin: auto;
+				width: 100%;
+				height: 180px;
+				padding-top: 10px;
+			}
+			
+			.texteimage {
+				display:flex;
+				flex-direction: column;
+			}
+			
+			.appelpart img, .partenaires img {
+				max-width: 90%;
+			}
+			
+			.article-img .soustexteimage {
+				width: 100%;
+			}
+			
+			.vieosug h2, .appelpart h2, .agendapub h2, .agendasci h2, .partenaires h2, .une h2 {
+				padding: 8px;
+				width: 80%;
+				display: block;
+				margin: auto;
+				margin-top: 20px;
+			}
+			
+			.vieosug .container, .appelpart .container, .partenaires .container {
+				display: block;
+				position: relative;
+				margin : auto;
+				margin-top: 15px;
+				margin-bottom: 40px;
+				padding-top: 0.5px;
+				padding-bottom: 8px;
+				padding-left: 22px;
+				padding-right: 17px;
+				width: 77%;
+		}
+			
+			.container_focus {
+				width: 50%;
+			}
+			
+		}
+	
+	</style>
+</head>
+
+<body>
+<!-- pas jQuery non plus --> 
+
+<header>
+	<div class="voirnavigateur">
+	Cet email ne s’affiche pas correctement ? &nbsp; &nbsp; <a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?newsletter92" target="_blank">Voir cette Infolettre dans votre navigateur</a> (connexion intranet)
+	</div>
+	<img class="spip_logos" src="http://osug-spip3.ujf-grenoble.fr/test/IMG/png/banniere_newsletter_4x-8.png" />
+	<h1 class="h1">nouvelle infolettre</h1>
+	
+	<div class="menu">
+		<a href="#Focus">Focus</a><div class="barre">|</div>
+		<a href="#VieOSUG">Vie de l'OSUG</a><div class="barre">|</div>
+		<a href="#AppelPart">Appel à particip.</a><div class="barre">|</div>
+		<a href="#AgendaPub">Agenda public</a><div class="barre">|</div>
+		<a href="#AgendaSci">Agenda scient.</a><div class="barre">|</div>
+		<a href="#Partenaires">Partenaires</a><div class="barre">|</div>
+		<a href="#Une">A la une</a>
+	</div>
+</header>
+
+    
+<div class="contenu">          
+     
+	<div class="focus" id="Focus">
+		
+		<div class="focustitre"><h2>Focus</h2></div>
+		<img alt='' class="focusimg" src="http://osug-spip3.ujf-grenoble.fr/test/IMG/png/imgnews.png" /> <!-- remplacer le contenu de src="..." par le lien de la bonne image-->
+		
+		<div class="container_focus">
+			
+			<div class="article chapo">
+				<h3>Titre de l'article de la rubrique Focus.</h3>
+				<div class="texte">
+					<p>Texte de l'article de la rubrique Focus. <a href="http://www.osug.fr/OSUG@2020AO/">Lien pas spécialement mis en valeur dans l'article</a>.</p>
+					<p>Autre paragraphe.</p>
+					<p>Rajouter un autre paragraphe fait un saut de ligne avec celui d'avant. Tous les paragraphes sont dans des balises p. </p>
+				</div>
+			</div>
+			<div class="article">
+				<h3>2eme article de la rubrique Focus.</h3>
+				<div class="focus_article_media">
+					<iframe src="https://www.youtube.com/embed/Gh7poYmVTUs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<!-- pour intégrer une vidéo Youtube, laisser la balise <iframe></iframe> et remplacer Gh7poYmVTUs par le bon id de la vidéo Youtube souhaitée. Pour trouver l'id Youtube d'une vidéo: il se trouve juste après /watch?= dans le lien d'une vidéo Youtube-->
+				</div>
+				<div class="texte">
+					<p>Si vous souhaiter déplacer l'image ou la vidéo, déplacez l'ensemble de la div "focus_article_media" plutôt que de déplacer uniquement l'image ou la vidéo.</p>
+					<p>Si vous avez besoin de plusieurs images ou vidéos à différents endroits, il est préférable de dupliquer la div "focus_article_media" au bon endroit et de garder à chaque fois uniquement ce dont on a besoin dedans.</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>  <!-- fin de la rubrique Focus -->    
+      
+    <div class="vieosug" id="VieOSUG">
+		<h2>Vie de l'OSUG</h2>
+		
+		<div class="container">
+			<div class="article">
+				<h3>Titre de l'article !</h3>
+				<img alt='' src="http://www.osug.fr/IMG/png/newsletter-jobs.png" class="imgarticle"/>
+				<div class="texte">
+					<p>Remplacez le contenu de src="..." et mettez le bon lien pour l'image. L'image de la rubrique Vie de l'OSUG occupe toujours toute la largeur de la boîte.</p>
+					<p>Pour faire mettre en valeur un lien, rajouter class="importantlink" dans la balise "a" qui entoure le texte d'un lien. Ne pas oublier de refermer le crochet. Attention: faire ça nécessite que le lien ne soit pas en plein milieu d'une phrase. Par ailleurs, un lien important se doit être entouré d'une balise   p align="center"   .</p>
+					<p align="center"><a class="importantlink" href="https://www.osug.fr/formulaires/formulaire-d-inscription-a-la-journee-de-l-obs-du-22-juin-2018.html"> Comme ceci. Ne pas oublier de vérifier si le lien se trouvant dans href="" est le bon.</a></p>
+				</div>
+			</div>
+			<div class="article">
+				<h3>2ème article de la vie de l'OSUG</h3>
+				<div class="texte">
+					<p>Texte du 2eme article. Pour faire un lien plus discret, il suffit d'enlever class="importanlink" dans la balise a qui entoure le lien.</p>
+					<p align="center"><a class="importantlink" href="mailto:osug-communication@univ-grenoble-alpes.fr">Lien important tel que le contact.</a></p>
+				</div>
+			</div>
+		</div>
+		
+	</div>  <!-- fin de la rubrique Vie de l'OSUG-->
+      
+      
+    <div class="appelpart" id="AppelPart">
+		<h2>Appel à participation</h2>
+		
+		<div class="container">
+			<div class="article-mini-img"><!-- cet article va etre avec une image de petite taille-->
+				<h3>Article avec une petite image</h3>
+				<div class="texteimagemini">
+					<img alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/jpg/1-2.jpg" class="imgarticle"/><!-- remplacer le contenu du serc="..." par le lien de la bonne image--> 
+					<div class="soustexteimage">
+						<div class="texte">
+							<p>Contenu de l'article.</p>
+							<p>Démarche à suivre pour gérer un article ajouté à la main avec une petite image:</p>
+			   	   			<p>Si vous souhaitez déplacer l'article qui possède une petite image: déplacer tout le contenu de la balise div qui a la class="article-mini-img." </p>
+							<p>Si vous souhaitez déplacer seulement le contenu de l'article (sans le titre de l'article): il faut déplacer tout le contenu de la div qui a la class="texteimagemini"</p>
+							<p>Si vous voulez déplacer seulement le texte: déplacer toute la div qui a la class="soustexteimage".</p>
+							<p align="center"><a class="importantlink" href="">Si vous souhaitez déplacer un lien important, déplacer tout le contenu de la balise p qui englobe la balise a qui englobe le lien.</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article">
+				<h3>Article normal (sans images)</h3>
+				<div class="texte">
+					<p>Texte de l'article.</p>
+					<p>Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+					<p align="center"><a class="importantlink" href="">Lien important.Pour supprimer l'importance d'un lien, supprimer le class="importantlink" dans la balise a. Pour supprimer le centrage d'un lien, supprimer le align="center" dans la balise p qui entoure la balise a.</a></p>
+				</div>
+			</div>
+			<div class="article-img">
+				<h3>Article avec une grande image</h3>
+				<div class="texteimage">
+					<img alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/jpg/14.jpg" class="imgarticle"/><!-- mettre le bon lien pour l'image-->
+					<div class="soustexteimage">
+						<div class="texte">
+							<p>Pour ajouter une deuxième image dans l'article, copier l'ensemble de la balise img et le coller <b>en dehors</b> de la balise qui a class="soustexteimage".</p>
+							<p>Ainsi, pour rajouter un bloc de texte: copier l'ensemble de la balise qui a class="soustexteimage" et le coller. Modifier le texte dans les balises p.</p>
+							<p align="center"><a class="importantlink" href="">Un lien important se trouve forcément dans sa propre balise p align="center".</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>  <!-- fin de la rubrique appel à participation-->
+      
+    <div class="agendapub" id="AgendaPub">
+		<h2>Agenda grand public</h2>
+
+		<div class="all_agendapub">	
+			
+				
+				<div class="container_agendapub">
+					<div class="imgpub"><img class='logo' alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/arton2709.png?1422272546" /></div>
+					<div class="blanc">
+						<h5 class="h5"> 10 février 2015 </h5>
+						<h4 class="h4" > Conférence "Neige et glace&nbsp;: quel avenir pour les Alpes et à l&#8217;échelle globale&nbsp;?" </h4>
+						<div class="lire_en_ligne"><a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2709">lire en ligne </a></div>
+					</div>
+				</div>
+				
+			
+				
+				<div class="container_agendapub">
+					<img class='logo imgpub' alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/arton2730.jpg?1425378156" width="100" height="100" style='width: 350px;height: 225px;position: relative;overflow: hidden' />
+					<div class="blanc">
+						<h5 class="h5"> 1er avril 2015 </h5>
+						<h4 class="h4" > Conférence &#171;&nbsp;Impact du changement climatique sur l’enneigement des Alpes françaises&nbsp;&#187; </h4>
+						<div class="lire_en_ligne"><a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2730">lire en ligne </a></div>
+					</div>
+				</div>
+				
+			
+				
+				<div class="container_agendapub">
+					<img class='logo imgpub' alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/arton2734.jpg?1426084725" width="100" height="100" style='width: 350px;height: 225px;position: relative;' />
+					<div class="blanc">
+						<h5 class="h5"> 20 mars 2015 </h5>
+						<h4 class="h4" > Rendez-vous avec la Lune </h4>
+						<div class="lire_en_ligne"><a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2734">lire en ligne </a></div>
+					</div>
+				</div>
+				
+			
+				
+				<div class="container_agendapub">
+					<img class='logo imgpub' alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/arton2736.jpg?1426151196" width="100" height="100" style='width: 350px;height: 225px;position: relative;' />
+					<div class="blanc">
+						<h5 class="h5"> 25 mars 2015 </h5>
+						<h4 class="h4" > Liaison vidéo avec le Joides Resolution </h4>
+						<div class="lire_en_ligne"><a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2736">lire en ligne </a></div>
+					</div>
+				</div>
+				
+				
+		</div>
+
+	</div> <!-- fin de la rubrique Agenda grand public-->
+		
+	<div class="agendasci" id="AgendaSci">
+		<h2>Agenda scientifique</h2>
+		
+		<div class="all_agendasci">
+		
+			<div class="seminaires">
+				<h3>Séminaires de laboratoires</h3>
+				<div class="menu">
+					<a href="http://isterre.fr/seminaires/">ISTerre</a><div class="barre">|</div>
+					<a href="http://ipag.osug.fr/congres-seminaires/">IPAG</a><div class="barre">|</div>
+					<a href="http://www.ige-grenoble.fr/seminaires/">IGE</a><div class="barre">|</div>
+					<a href="http://www.legi.grenoble-inp.fr/web/spip.php?rubrique306">LEGI</a><div class="barre">|</div>
+					<a href="http://www-leca.ujf-grenoble.fr/seminaires/">LECA</a><div class="barre">|</div>
+					<a href="http://www.irstea.fr/linstitut/nos-centres/grenoble/seminaires-soutenances-de-theses-et-hdr">Irstea</a><div class="barre">|</div>
+					<a href="http://www.cnrm-game.fr/spip.php?article559">CEN</a>
+				</div>
+			</div>
+		
+			<div class="all_cards_agendasci">
+			
+				
+				
+					<div class="card_agendasci-osug"><!-- En cas d'évènement OSUG: remplacer "card_agendasci" par "card_agendasci-osug". Il suffit de rajouter -osug à la fin du nom de la classe card_agendasci -->
+						<div>
+							<h5 class="h5"></h5>
+							<h4 class="h4">Journée Thématique "Santé-Environnement/ Santé des écosystèmes" | 14 septembre 2015</h4>
+							<div class="texte">
+								<p class="lieu">Lieu</p><!-- préciser le lieu à la main: l'info est dans le contenu de l'article-->
+								
+<p>L’UJF et Grenoble INP organisent le 14 septembre, de 8h30 à 19h, une journée thématique sur le thème&nbsp;: &#171;&nbsp;Santé-Environnement / Santé des écosystèmes&nbsp;&#187; 
+<br class='autobr' />
+Inscriptions ouvertes à tous et gratuites (places limitées à 90)&nbsp;: Formulaire en ligne 
+<br class='autobr' />
+Objectifs de la journée Faire se rencontrer les scientifiques des différents laboratoires Grenoblois et Lyonnais&nbsp;(...)</p>
+</div>
+						</div>
+						<div class="lire_en_ligne">
+						<img alt="" src="http://osug-spip3.ujf-grenoble.fr/test/IMG/png/plan_de_travail_1_4x-8.png" class="osugicon"/>
+						<a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2953">lire en ligne </a></div>
+					</div>
+				
+				
+				
+					<div class="card_agendasci-osug"><!-- En cas d'évènement OSUG: remplacer "card_agendasci" par "card_agendasci-osug". Il suffit de rajouter -osug à la fin du nom de la classe card_agendasci -->
+						<div>
+							<h5 class="h5"></h5>
+							<h4 class="h4">Séminaire "Pauvreté et Développement, quelle place dans la lutte contre les changements climatiques&nbsp;?" | 10 novembre 2015</h4>
+							<div class="texte">
+								<p class="lieu">Lieu</p><!-- préciser le lieu à la main: l'info est dans le contenu de l'article-->
+								<p>Quatrième séminaire scientifique du cycle "Sur les traces du GIEC" de l’Université Grenoble Alpes dans le cadre de la COP21. RDV à 12h30 à l’Amphi Weil, Domaine universitaire de Saint-Martin d’Hères.</p></div>
+						</div>
+						<div class="lire_en_ligne">
+						<img alt="" src="http://osug-spip3.ujf-grenoble.fr/test/IMG/png/plan_de_travail_1_4x-8.png" class="osugicon"/>
+						<a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2998">lire en ligne </a></div>
+					</div>
+				
+				
+				
+					<div class="card_agendasci"><!-- En cas d'évènement OSUG: remplacer "card_agendasci" par "card_agendasci-osug". Il suffit de rajouter -osug à la fin du nom de la classe card_agendasci -->
+						<div>
+							<h5 class="h5"></h5>
+							<h4 class="h4">Journée "Soufre" &amp; workshop AVS | 19-20 mai</h4>
+							<div class="texte">
+								<p class="lieu">Lieu</p><!-- préciser le lieu à la main: l'info est dans le contenu de l'article-->
+								<p>L&#8217;atelier Géochimie vous propose 2 journées thématiques&nbsp;: (i) Le soufre dans tous ses états&nbsp;; (ii) Les sulfures volatils acides (AVS).</p></div>
+						</div>
+						<div class="lire_en_ligne">
+						<img alt="" src="http://osug-spip3.ujf-grenoble.fr/test/IMG/png/plan_de_travail_1_4x-8.png" class="osugicon"/>
+						<a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article3000">lire en ligne </a></div>
+					</div>
+				
+				
+				
+					<div class="card_agendasci-osug"><!-- En cas d'évènement OSUG: remplacer "card_agendasci" par "card_agendasci-osug". Il suffit de rajouter -osug à la fin du nom de la classe card_agendasci -->
+						<div>
+							<h5 class="h5"></h5>
+							<h4 class="h4">Cérémonie du prix de thèse de l&#8217;Univ. Grenoble Alpes | 26 novembre 2015</h4>
+							<div class="texte">
+								<p class="lieu">Lieu</p><!-- préciser le lieu à la main: l'info est dans le contenu de l'article-->
+								<p>Parmi les sept docteurs de l’Université Grenoble Alpes récompensés pour l’excellence de leur travail de recherche&nbsp;: <strong>Quentin LIBOIS</strong> (LGGE) - Évolution des propriétés physiques de la neige de surface sur le Plateau Antarctique.</p></div>
+						</div>
+						<div class="lire_en_ligne">
+						<img alt="" src="http://osug-spip3.ujf-grenoble.fr/test/IMG/png/plan_de_travail_1_4x-8.png" class="osugicon"/>
+						<a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article3014">lire en ligne </a></div>
+					</div>
+				
+				
+				
+			</div>
+		
+		</div>
+		
+	</div> <!-- fin de la rubrique agenda scientifique--> 	
+		
+		
+	<div class="partenaires" id="Partenaires">
+		<h2>Partenaires</h2>
+		
+		<div class="container">
+			<div class="article-img">
+				<h3>Article avec une grande image</h3>
+				<div class="texteimage">
+					<img alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/jpg/40-2.jpg" class="imgarticle" /><!-- remplacer le contenu de src="..." par le lien vers la bonne image-->
+					<div class="soustexteimage">
+						<div class="texte">
+							<p>Texte de l'article</p>
+						</div>
+						<div class="lire_en_ligne">
+							<a href="http://outoflabs.linksium.fr/">En savoir plus ></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article">
+				<h3>Article sans image</h3>
+				<div class="texte">
+					<p>Si vous voulez enlever les boutons bleus à la fin de l'article comme "plus d'infos", il faut supprimer l'ensemble de la balise div class="lire_en_ligne" comme ci-dessous.</p>
+				</div>
+				<div class="lire_en_ligne">
+					<a href="https://www.csug.fr/hackathon-new-space-l-espace-pour-tous--333632.kjsp?RH=10511530961227086">Plus d'infos ></a></div>
+			</div>
+			<div class="article">
+				<h3>Article avec liens importants et sous-parties</h3>
+				<div class="texte">
+					<h4>>> Titre de la sous-partie </h4>
+					<p>Texte de l'article... </p>
+					<p align="center"><a class="importantlink" href="mailto:info@montagnes-sciences.fr">Lien important: candidater, contacter...</a></p>
+					<h4>>> Ne pas oublier de mettre le bon lien dans href="..." dans toutes les balises de liens</h4> 
+					<p>Ne pas oublier non plus: pour les articles avec une petite image, voir les explications dans la rubrique Appel à participation. </p>
+					<p align="center"><a class="importantlink" href="mailto:info@montagnes-sciences.fr">Lien important</a></p>
+				</div>
+			</div>
+		</div>
+		
+	</div> <!-- Fin de la rubrique partenaires-->	
+     
+     
+    <div class="une" id="Une">
+		<h2>A la une le mois dernier</h2>
+		
+		<div class="all_une">
+			
+			
+			
+				<div class="container-article_une">
+					<img class='logo' alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/arton2195.jpg?1405513157" width="500" height="320" style='width: 400px;height: 256px;position: relative;' />
+						<h4 class="h4">Première carte météo d’une naine brune</h4>
+						<div class="lire_en_ligne"><a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article2195">lire en ligne </a></div>
+				</div>
+			
+			
+			
+				<div class="container-article_une">
+					<img class='logo imgune' alt='' src="http://osug-spip3.ujf-grenoble.fr/test/IMG/arton3344.jpg?1486719467" width="500" height="323" style='width: 400px;height: 256px;position: relative;' />
+						<h4 class="h4">L&#8217;intrigante géométrie d’une proto-étoile révélée par ALMA</h4>
+						<div class="lire_en_ligne"><a href="http://osug-spip3.ujf-grenoble.fr/test/spip.php?article3344">lire en ligne </a></div>
+				</div>
+			
+			
+			
+		</div>
+		
+	</div> <!-- fin de la rubrique A la une --> 
+     
+</div><!-- div .contenu -->
+
+<footer>
+	<div>
+		<p>&copy; <a href="http://test.osug.fr/">OSUG</a> </br>
+		Directeur de la publication : <b>Michel Dietrich</b></br>
+		Responsabilité éditoriale &amp; r&eacute;daction : <b>Service Communication de l'OSUG</b></br>
+		Contact : <a href="mailto:osug-communication@univ-grenoble-alpes.fr">osug-communication@univ-grenoble-alpes.fr</a></p>
+	</div>
+</footer>
+
+</body>
+</html>
